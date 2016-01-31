@@ -1,0 +1,32 @@
+{
+  "name": "Polymer Starter Kit",
+  "short_name": "Polymer Starter Kit",
+  "icons": [{
+        "src": "images/touch/Extremus-128x128.png",
+        "sizes": "128x128",
+        "type": "image/png"
+      }, {
+        "src": "images/touch/Extremus-144x144.png",
+        "sizes": "144x144",
+        "type": "image/png"
+      }, {
+        "src": "images/touch/Extremus-152x152.png",
+        "sizes": "152x152",
+        "type": "image/png"
+      }, {
+        "src": "images/touch/Extremus-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },{
+        "src": "images/touch/Extremus-384x384.png",
+        "sizes": "384x384",
+        "type": "image/png"
+      },{
+        "src": "images/touch/Extremus-584x584.png",
+        "sizes": "584x584",
+        "type": "image/png"
+      }],
+  "background_color": "#3E4EB8",
+  "display": "standalone",
+  "theme_color": "#0E7574"
+}

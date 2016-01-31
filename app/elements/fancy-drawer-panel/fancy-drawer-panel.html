@@ -1,0 +1,303 @@
+<!--
+This element is ment to reproduce recent google plus design schematics
+  It contains 4 distinctive parts that user can fill by typing in dom.
+    1. app-title
+    2. drawer-title
+    3. content
+    4. drawer-menu
+
+
+-->
+<link rel="import" href="../../bower_components/polymer/polymer-micro.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<dom-module id="fancy-drawer-panel">
+  <style include="shared-styles">
+    #drawerToolbar {
+      color: var(--secondary-text-color);
+      background-color: #f5f5f5;
+      border-bottom: var(--drawer-toolbar-border-color);
+    }
+
+    #drawerToolbar .menu-name {
+      @apply(--paper-font-title);
+    }
+
+    #mainToolbar {
+      color: white;
+    }
+
+    #mainToolbar .middle-container {
+      margin-right: 36px;
+      margin-left: 12px;
+    }
+
+    #mainToolbar .app-name img {
+      height: 25px;
+      margin-right: 24px;
+    }
+
+    #mainToolbar .middle-container,
+    #mainToolbar .bottom-container {
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+    }
+
+    #mainToolbar .middle-container {
+      height: 100%;
+    }
+
+    #mainToolbar:not(.tall) .middle-container {
+      font-size: 18px;
+      padding-bottom: 0;
+    }
+
+    #mainToolbar .bottom-title {
+      @apply(--paper-font-subhead);
+      font-size: 20px !important;
+      /* Required for main area's paper-scroll-header-panel custom condensing transformation */
+      -webkit-transform-origin: left center;
+      transform-origin: left center;
+      text-overflow: ellipsis;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -o-user-select: none;
+      user-select: none;
+      cursor: default;
+    }
+
+    .no-select {
+      -webkit-transform-origin: left center;
+      transform-origin: left center;
+      text-overflow: ellipsis;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -o-user-select: none;
+      user-select: none;
+      cursor: default;
+    }
+
+    .space {
+      @apply(--layout-flex);
+    }
+
+    .content {
+      @apply(--layout-horizontal);
+      @apply(--layout-start);
+    }
+
+    #secMenu {
+      height: 100%;
+      position: relative;
+      display: block;
+      -webkit-transition: all ease-out 200ms;
+      -moz-transition: all ease-out 200ms;
+      -ms-transition: all ease-out 200ms;
+      -o-transition: all ease-out 200ms;
+      transition: all ease-out 200ms;
+    }
+
+    :host ::content[drawer-menu] {
+      position: fixed;
+      -webkit-transition: all ease-out 200ms;
+      -moz-transition: all ease-out 200ms;
+      -ms-transition: all ease-out 200ms;
+      -o-transition: all ease-out 200ms;
+      transition: all ease-out 200ms;
+    }
+
+    paper-menu {
+      background: rgba(0, 0, 0, 0);
+    }
+
+    #drawerToolbar .app-name {
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+    }
+
+    #drawerToolbar img {
+      height: 30px;
+      margin-right: 24px;
+      margin-left: 8px;
+    }
+
+    #drawerToolbar {
+      @apply(--paper-font-common-base);
+      font-size: 22px;
+    }
+
+    #paperToggle {
+      height: 100%;
+      -webkit-transition: all ease-out 200ms;
+      -moz-transition: all ease-out 200ms;
+      -ms-transition: all ease-out 200ms;
+      -o-transition: all ease-out 200ms;
+      transition: all ease-out 200ms;
+    }
+  </style>
+
+  <template>
+    <paper-drawer-panel id="mainDrawer" force-narrow drawer-width="{{drawerWidth}}"
+                        responsive-width="{{responsiveWidth}}" disable-swipe="{{!narrow}}">
+      <paper-scroll-header-panel drawer fixed id="drawerHeaderPanel">
+        <!-- Drawer Toolbar -->
+        <paper-toolbar id="drawerToolbar" class="no-select">
+          <div class="middle-container">
+            <content select="[drawer-title]"></content>
+          </div>
+        </paper-toolbar>
+
+        <!-- Drawer Content -->
+        <div id="drawerMenu">
+        </div>
+        <content select="[drawer-menu]"></content>
+
+      </paper-scroll-header-panel>
+      <paper-scroll-header-panel main id="headerPanelMain" fixed>
+        <!-- Main Toolbar -->
+        <paper-toolbar id="mainToolbar">
+          <paper-icon-button id="paperToggle" icon="menu" fancy-drawer-toggle
+                             style$="{{_computedMenuButtonStyle(menuOpen,narrow)}}" noink="{{!narrow}}"></paper-icon-button>
+
+          <!-- Application name -->
+          <div class="middle-container" hidden$="{{narrow}}">
+            <content select="[app-title]"></content>
+          </div>
+
+          <!-- Application sub title -->
+          <div class="bottom-container">
+            <div class="bottom-title">Control Center</div>
+          </div>
+          <span class="space"></span>
+
+          <!-- Toolbar icons -->
+          <paper-icon-button icon="refresh"></paper-icon-button>
+          <paper-icon-button icon="search"></paper-icon-button>
+
+        </paper-toolbar>
+
+        <!-- Main Content -->
+        <div class="content">
+          <div id="secMenu" style$="{{_computedSecMenuStyle(drawerWidth,menuOpen)}}" hidden$="{{narrow}}"></div>
+          <content select="[content]"></content>
+        </div>
+      </paper-scroll-header-panel>
+
+    </paper-drawer-panel>
+  </template>
+  <script>
+    Polymer({
+      is: "fancy-drawer-panel",
+      behaviors: [Polymer.IronResizableBehavior],
+      properties: {
+        title: {
+          type: String,
+          value: "Control Center"
+        },
+        route: {
+          type: String
+        },
+        responsiveWidth: {
+          type: String,
+          value: "600px"
+        },
+        narrow: {
+          type: Boolean,
+          value: false,
+          notify: true
+        },
+        menuOpen: {
+          type: Boolean,
+          value: true,
+          notify: true
+        },
+        drawerWidth: {
+          type: String,
+          value: "256px"
+        }
+      },
+      listeners: {
+        'paperToggle.tap': '_onTap',
+        'iron-resize': '_onIronResize',
+        'narrow-changed': 'menuLocationChange'
+      },
+
+      menuLocationChange: function () {
+        this.menuOpen = true;
+        var newNode = Polymer.dom(this).parentNode.querySelector('*[drawer-menu]');
+        Polymer.dom(Polymer.dom(newNode).parentNode).removeChild(newNode);
+        if (!this.narrow) {
+          Polymer.Base.toggleClass("secMenu", true, newNode);
+          Polymer.Base.toggleClass("primaryMenu", false, newNode);
+          this.$.secMenu.appendChild(newNode);
+        } else {
+          Polymer.Base.toggleClass("secMenu", false, newNode);
+          Polymer.Base.toggleClass("primaryMenu", true, newNode);
+          this.$.drawerMenu.appendChild(newNode);
+        }
+      },
+      _onTap: function (event) {
+        this.toggleDrawer();
+      },
+      _onIronResize: function () {
+        //if the width is less than responsive width, make it narrow
+        this.narrow = parseInt(this.getComputedStyleValue('width')) < parseInt(this.responsiveWidth);
+        if (this.narrow) {
+          //if the display is narrow, have to close the secondary menu;
+          this.menuOpen = !this.narrow;
+        }
+      },
+      ready: function () {
+        if (!this.narrow)
+          this.menuLocationChange();
+      },
+      closeDrawer: function () {
+        this.$$('paper-drawer-panel').closeDrawer();
+      },
+      openDrawer: function () {
+        this.$$('paper-drawer-panel').openDrawer();
+      },
+      toggleDrawer: function () {
+        if (this.narrow)
+          this.$$('paper-drawer-panel').togglePanel();
+        else {
+          this.menuOpen = !this.menuOpen;
+        }
+      },
+      scrollToTop: function (val) {
+        this.$.headerPanelMain.scrollToTop(val);
+      },
+      _computedSecMenuStyle: function (drawerWidth, menuOpen) {
+        var drawer = Polymer.dom(this).parentNode.querySelector('*[drawer-menu]');
+        drawer.style.setProperty("width", drawerWidth, "");
+        var style = "width: " + drawerWidth + ";";
+        if (!menuOpen) {
+          style += "margin-left:-" + drawerWidth;
+          drawer.style.setProperty("left", "-" + drawerWidth, "");
+        }
+
+        else {
+          style += "margin-left:0";
+          drawer.style.setProperty("left", "0", "");
+        }
+        return style;
+      },
+      _computedMenuButtonStyle: function (menuOpen, narrow) {
+        if (!narrow) {
+          var style = "position:absolute;height:100%; left: ";
+          if (this.menuOpen) {
+            style += "-20px;";
+          }
+          else {
+            style += "-17px;";
+          }
+          return style;
+        }
+        else {
+          return "display:relative;left:0px;height:auto;";
+        }
+      }
+    });
+  </script>
+</dom-module>

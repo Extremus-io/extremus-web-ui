@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Edit, share, control your Extremus enabled hardware with ease.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Polymer Starter Kit">
+  <title>Extremus-IO</title>
+
+  <!-- Place favicon.ico in the `app/` directory -->
+
+  <!-- Chrome for Android theme color -->
+  <meta name="theme-color" content="#0b5e5d">
+
+  <!-- Web Application Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Tile color for Win8 -->
+  <meta name="msapplication-TileColor" content="#0E7574">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Extremus-IO">
+  <link rel="icon" sizes="192x192" href="images/touch/Extremus-192x192.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Extremus-IO">
+  <link rel="apple-touch-icon" href="images/touch/Extremus-152x152.png">
+
+  <!-- Tile icon for Win8 (144x144) -->
+  <meta name="msapplication-TileImage" content="images/touch/Extremux-144x144.png">
+
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild-->
+
+  <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <!-- endbuild -->
+
+  <!-- Because this project uses vulcanize this should be your only html import
+       in this file. All other imports should go in elements.html -->
+  <link rel="import" href="elements/elements.html">
+
+  <!-- For shared styles, shared-styles.html import in elements.html -->
+  <style is="custom-style" include="shared-styles"></style>
+</head>
+
+<body unresolved>
+<span id="browser-sync-binding"></span>
+<template is="dom-bind" id="app">
+
+  <fancy-drawer-panel id="paperDrawerPanel" route="{{route}}">
+    <!--app title-->
+    <div class="app-name" app-title><img src="/images/touch/extremus.svg"/>
+      <div>Extremus-IO</div>
+    </div>
+    <!--Drawer panel header-->
+    <div class="app-name" drawer-title><img src="/images/touch/Extremus-128x128.png"/>
+      <div>Extremus-IO</div>
+    </div>
+    <!-- Drawer Content -->
+    <paper-menu attr-for-selected="data-route" selected="[[route]]" drawer-menu>
+      <a data-route="home" href="{{baseUrl}}">
+        <iron-icon icon="home"></iron-icon>
+        <span>Control Center</span>
+      </a>
+
+      <a data-route="products" href="{{baseUrl}}products">
+        <iron-icon icon="settings-cell"></iron-icon>
+        <span>Products</span>
+      </a>
+
+      <a data-route="controllers" href="{{baseUrl}}controllers">
+        <iron-icon icon="settings-input-component"></iron-icon>
+        <span>Controllers</span>
+      </a>
+
+      <a data-route="users" href="{{baseUrl}}users">
+        <iron-icon icon="info"></iron-icon>
+        <span>Users and Permissions</span>
+      </a>
+
+      <a data-route="contact" href="{{baseUrl}}contact">
+        <iron-icon icon="mail"></iron-icon>
+        <span>Contact Us</span>
+      </a>
+    </paper-menu>
+
+    <!-- Main Content -->
+    <div class="content" content>
+      <iron-pages attr-for-selected="data-route" selected="{{route}}" id="mainPages">
+        <section data-route="home" class="cardholder">
+          <paper-material elevation="1" class="card">
+            <h2>Products</h2>
+            <p class="subhead" class="card">products you have registered in the extremus database appear here. if you wish to add
+              another, click here</p>
+            <hr>
+          </paper-material>
+          <paper-material elevation="1" class="card">
+            <h2>Controllers</h2>
+            <p class="subhead">controllers based on above your registered product schematics are shown here.</p>
+            <hr>
+          </paper-material>
+        </section>
+
+        <section data-route="products">
+          <h2>Products</h2>
+          <p class="subhead"><i>Products you have registered in Extremus database appear here</i></p>
+        </section>
+
+        <section data-route="controllers">
+          Contact
+        </section>
+
+        <section data-route="contact">
+          Contact
+        </section>
+
+        <section data-route="users">
+          Users
+        </section>
+      </iron-pages>
+    </div>
+  </fancy-drawer-panel>
+
+  <paper-toast id="toast">
+    <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
+  </paper-toast>
+
+  <!-- Uncomment next block to enable Service Worker support (1/2) -->
+  <!--
+  <paper-toast id="caching-complete"
+               duration="6000"
+               text="Caching complete! This app will work offline.">
+  </paper-toast>
+
+  <platinum-sw-register auto-register
+                        clients-claim
+                        skip-waiting
+                        base-uri="bower_components/platinum-sw/bootstrap"
+                        on-service-worker-installed="displayInstalledToast">
+    <platinum-sw-cache default-cache-strategy="fastest"
+                       cache-config-file="cache-config.json">
+    </platinum-sw-cache>
+  </platinum-sw-register>
+  -->
+
+</template>
+
+<!-- build:js scripts/app.js -->
+<script src="scripts/app.js"></script>
+<!-- endbuild-->
+</body>
+
+</html>
