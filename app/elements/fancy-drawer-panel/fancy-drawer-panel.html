@@ -5,8 +5,6 @@ This element is ment to reproduce recent google plus design schematics
     2. drawer-title
     3. content
     4. drawer-menu
-
-
 -->
 <link rel="import" href="../../bower_components/polymer/polymer-micro.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
@@ -31,9 +29,21 @@ This element is ment to reproduce recent google plus design schematics
       margin-left: 12px;
     }
 
-    #mainToolbar .app-name img {
+    #mainToolbar ::content .app-name img {
       height: 25px;
       margin-right: 24px;
+    }
+
+    #mainToolbar ::content .app-name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    #mainToolbar ::content .bottom-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     #mainToolbar .middle-container,
@@ -91,20 +101,20 @@ This element is ment to reproduce recent google plus design schematics
       height: 100%;
       position: relative;
       display: block;
-      -webkit-transition: all ease-out 200ms;
-      -moz-transition: all ease-out 200ms;
-      -ms-transition: all ease-out 200ms;
-      -o-transition: all ease-out 200ms;
-      transition: all ease-out 200ms;
+      -webkit-transition: all ease-out 300ms;
+      -moz-transition: all ease-out 300ms;
+      -ms-transition: all ease-out 300ms;
+      -o-transition: all ease-out 300ms;
+      transition: all ease-out 300ms;
     }
 
     :host ::content[drawer-menu] {
       position: fixed;
-      -webkit-transition: all ease-out 200ms;
-      -moz-transition: all ease-out 200ms;
-      -ms-transition: all ease-out 200ms;
-      -o-transition: all ease-out 200ms;
-      transition: all ease-out 200ms;
+      -webkit-transition: all ease-out 100ms;
+      -moz-transition: all ease-out 100ms;
+      -ms-transition: all ease-out 100ms;
+      -o-transition: all ease-out 100ms;
+      transition: all ease-out 100ms;
     }
 
     paper-menu {
@@ -158,7 +168,8 @@ This element is ment to reproduce recent google plus design schematics
         <!-- Main Toolbar -->
         <paper-toolbar id="mainToolbar">
           <paper-icon-button id="paperToggle" icon="menu" fancy-drawer-toggle
-                             style$="{{_computedMenuButtonStyle(menuOpen,narrow)}}" noink="{{!narrow}}"></paper-icon-button>
+                             style$="{{_computedMenuButtonStyle(menuOpen,narrow)}}"
+                             noink="{{!narrow}}"></paper-icon-button>
 
           <!-- Application name -->
           <div class="middle-container" hidden$="{{narrow}}">
