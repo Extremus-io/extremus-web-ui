@@ -96,7 +96,8 @@
         <section data-route="home" class="cardholder">
           <paper-material elevation="1" class="card">
             <h2>Products</h2>
-            <p class="subhead" class="card">products you have registered in the extremus database appear here. if you wish to add
+            <p class="subhead" class="card">products you have registered in the extremus database appear here. if you
+              wish to add
               another, click here</p>
             <hr>
           </paper-material>
@@ -109,11 +110,59 @@
 
         <section data-route="products">
           <h2>Products</h2>
-          <p class="subhead"><i>Products you have registered in Extremus database appear here</i></p>
+          <p class="subhead"><i>Products you have registered in Extremus database appear here. <a
+            href="{{baseUrl}}products/add/">click here</a> to add a new product </i></p>
+        </section>
+
+        <section data-route="products.add" class="cardholder">
+          <paper-card heading="Add a Product" class="paper-card space">
+            <div class="card-content">
+              <paper-input label="Product Name " name="name" id="pname"></paper-input>
+              <paper-dropdown-menu label="Chipset">
+                <paper-menu class="dropdown-content">
+                  <paper-item>Intel Edison</paper-item>
+                  <paper-item>Generic</paper-item>
+                  <paper-item>Arduino</paper-item>
+                  <paper-item>ESP8266</paper-item>
+                </paper-menu>
+              </paper-dropdown-menu>
+              <p class="complex-input-label">Modules</p>
+              <section>
+                <div class="form-complex-row">
+                  <span>coreServices</span>
+                  <span class="space"></span>
+                  <paper-icon-button icon="create"></paper-icon-button>
+                  <paper-icon-button icon="delete"></paper-icon-button>
+                </div>
+                <div class="form-complex-row">
+                  <span>heatManager</span>
+                  <span class="space"></span>
+                  <paper-icon-button icon="create"></paper-icon-button>
+                  <paper-icon-button icon="delete"></paper-icon-button>
+                </div>
+                <div class="form-complex-row">
+                  <span>materialDispenser</span>
+                  <span class="space"></span>
+                  <paper-icon-button icon="create"></paper-icon-button>
+                  <paper-icon-button icon="delete"></paper-icon-button>
+                </div>
+                <div class="form-complex-row">
+                  <span>recepieUpdater</span>
+                  <span class="space"></span>
+                  <paper-icon-button icon="create"></paper-icon-button>
+                  <paper-icon-button icon="delete"></paper-icon-button>
+                </div>
+                <paper-button>+ add module</paper-button>
+              </section>
+            </div>
+            <div class="card-actions">
+              <paper-button>save</paper-button>
+            </div>
+          </paper-card>
         </section>
 
         <section data-route="controllers">
-          Contact
+          Controllers
         </section>
 
         <section data-route="contact">

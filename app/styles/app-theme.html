@@ -213,6 +213,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     max-width: 400px;
     margin:30px;
   }
+  .paper-card{
+    max-width:400px;
+    margin:30px;
+    padding: 15px 15px 0;
+  }
 
   /* Height of the scroll area */
   /*.content {
@@ -245,6 +250,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   #toast .toast-hide-button {
     color: #eeff41;
     margin: 10px;
+  }
+  a{
+    color: #00b0af;
+  }
+  .form-complex-row{
+    @apply(--layout-horizontal);
+    @apply(--layout-center);
+    padding-left:20px;
+    max-width:300px;
+  }
+  .form-complex-row paper-icon-button{
+    opacity:0.65;
+  }
+  .complex-input-label{
+    @apply(--paper-font-title);
+    color:var(--secondary-text-color);
+  }
+  paper-button{
+    color:var(--primary-color);
   }
 
   /* Breakpoints */
