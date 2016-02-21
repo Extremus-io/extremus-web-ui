@@ -47,7 +47,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     /* paper-menu */
     --paper-menu-background-color: #ffffff;
-    --menu-link-color: #111111;
+    --menu-link-color: #696969;
+    --paper-menu-selected-item: {
+      color: var(--primary-color);
+    };
+    --paper-menu-focused-item-after: {
+      background: var(--light-primary-color);
+    }
     --paper-font-common-base: {
       font-family: 'Questrial', sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -86,7 +92,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   paper-menu iron-icon {
     margin-right: 33px;
-    opacity: 0.54;
+    /*opacity: 0.54;*/
   }
 
   paper-menu a {
@@ -96,10 +102,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     text-decoration: none;
     color: var(--menu-link-color);
-
     text-rendering: optimizeLegibility;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: bold;
     line-height: 24px;
     min-height: 48px;
     padding: 0 16px;
@@ -205,17 +210,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     @apply(--layout-vertical);
     flex-wrap: wrap;
   }
-  .cardholder{
-    justify-content:space-around;
-    flex-direction:row !important;
+
+  .cardholder {
+    justify-content: space-around;
+    flex-direction: row !important;
   }
+
   .card {
     max-width: 400px;
-    margin:30px;
+    margin: 30px;
   }
-  .paper-card{
-    max-width:400px;
-    margin:30px;
+
+  .paper-card {
+    max-width: 400px;
+    margin: 30px;
     padding: 15px 15px 0;
   }
 
@@ -251,24 +259,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     color: #eeff41;
     margin: 10px;
   }
-  a{
+
+  a {
     color: #00b0af;
   }
-  .form-complex-row{
+
+  .form-complex-row {
     @apply(--layout-horizontal);
     @apply(--layout-center);
-    padding-left:20px;
-    max-width:300px;
+    padding-left: 20px;
+    max-width: 300px;
   }
-  .form-complex-row paper-icon-button{
-    opacity:0.65;
+
+  .form-complex-row paper-icon-button {
+    opacity: 0.65;
   }
-  .complex-input-label{
+
+  .complex-input-label {
     @apply(--paper-font-title);
-    color:var(--secondary-text-color);
+    color: var(--secondary-text-color);
   }
-  paper-button{
-    color:var(--primary-color);
+
+  paper-button {
+    color: var(--primary-color);
   }
 
   /* Breakpoints */
@@ -282,7 +295,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     .card {
       margin: 20px 0 15px;
-      width:calc(97.33% - 32px);
+      width: calc(97.33% - 32px);
     }
 
     paper-material {
